@@ -1,12 +1,10 @@
 import React from 'react'
 import './Product.css';
 import { useStateValue } from './StateProvider';
+import { motion } from 'framer-motion';
 
 function Product({ id, title, price, image, rating }) {
     const [{ basket }, dispatch] = useStateValue();
-
-    console.log(basket);
-
 
     const addToBasket = () => {
         // dispatch the data into the data layer
@@ -23,7 +21,9 @@ function Product({ id, title, price, image, rating }) {
     }
 
     return (
-        <div className="product">
+        <motion.div className="product"
+            whileHover={{ scale: 1.05 }}
+        >
             <div className="product__info">
                 <p>{title}</p>
                 <p className='product__price'>
@@ -39,9 +39,10 @@ function Product({ id, title, price, image, rating }) {
             </div>
 
             <img src={image} alt="" />
-            <button onClick={addToBasket}>Add to Basket</button>
+            <motion.button whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}
+                onClick={addToBasket}>Add to Basket</motion.button>
 
-        </div>
+        </motion.div>
     )
 }
 

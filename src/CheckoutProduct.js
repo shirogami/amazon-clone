@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './CheckoutProduct.css';
 import { useStateValue } from './StateProvider';
+import { motion } from 'framer-motion';
 
 function CheckoutProduct({ id, image, title, price, rating }) {
 
@@ -15,7 +16,11 @@ function CheckoutProduct({ id, image, title, price, rating }) {
     }
 
     return (
-        <div className='checkoutProduct'>
+        <motion.div className='checkoutProduct'
+            initial={{ y: 500 }}
+            animate={{ y: 0 }}
+            transition={{ delay: 0.5, type: "spring" }}
+        >
             <img src={image} alt="" className="checkoutProduct__image" />
 
             <div className="checkoutProduct__info">
@@ -32,9 +37,13 @@ function CheckoutProduct({ id, image, title, price, rating }) {
                             <p>🌟</p>
                         ))}
                 </div>
-                <button onClick={removeFromBasket}>Remove from Basket</button>
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={removeFromBasket}
+                >Remove from Basket</motion.button>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
