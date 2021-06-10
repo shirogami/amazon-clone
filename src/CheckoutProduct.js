@@ -3,7 +3,7 @@ import './CheckoutProduct.css';
 import { useStateValue } from './StateProvider';
 import { motion } from 'framer-motion';
 
-function CheckoutProduct({ id, image, title, price, rating }) {
+function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
 
     const [{ basket }, dispatch] = useStateValue();
 
@@ -37,11 +37,14 @@ function CheckoutProduct({ id, image, title, price, rating }) {
                             <p>🌟</p>
                         ))}
                 </div>
-                <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={removeFromBasket}
-                >Remove from Basket</motion.button>
+                {!hideButton && (
+                    <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={removeFromBasket}
+                    >Remove from Basket</motion.button>
+                )}
+
             </div>
         </motion.div>
     )
